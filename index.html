@@ -332,3 +332,51 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ตัวอย่างข้อมูลไม่หายเมื่อรีเฟรช</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+    input, button { padding: 8px; margin: 5px; }
+  </style>
+</head>
+<body>
+  <h1>เก็บข้อมูลด้วย localStorage</h1>
+  <p>กรอกข้อความแล้วกด "บันทึก"</p>
+  <input type="text" id="dataInput" placeholder="พิมพ์ข้อความที่นี่">
+  <button onclick="saveData()">บันทึก</button>
+  <button onclick="clearData()">ลบข้อมูล</button>
+  
+  <h2>ข้อมูลที่บันทึกไว้:</h2>
+  <div id="displayData"></div>
+  
+  <script>
+    // ฟังก์ชันบันทึกข้อมูลลง localStorage
+    function saveData() {
+      const input = document.getElementById('dataInput').value;
+      localStorage.setItem('myData', input);
+      renderData();
+    }
+    
+    // ฟังก์ชันแสดงข้อมูลจาก localStorage
+    function renderData() {
+      const storedData = localStorage.getItem('myData') || 'ไม่มีข้อมูล';
+      document.getElementById('displayData').innerText = storedData;
+    }
+    
+    // ฟังก์ชันลบข้อมูลใน localStorage
+    function clearData() {
+      localStorage.removeItem('myData');
+      renderData();
+    }
+    
+    // เมื่อหน้าเว็บโหลดให้แสดงข้อมูลที่เก็บไว้
+    window.onload = function() {
+      renderData();
+    }
+  </script>
+</body>
+</html>
